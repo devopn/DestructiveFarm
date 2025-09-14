@@ -1,7 +1,7 @@
 import requests
 
-from src import app
-from src.models import FlagStatus, SubmitResult
+from server import app
+from server.models import FlagStatus, SubmitResult
 
 RESPONSES = {
     FlagStatus.ACCEPTED: ["accepted", "flag already stoled by your"],
@@ -29,7 +29,7 @@ def submit_flags(flags, config):
     unknown_responses = set()
 
     for item in flags:
-        url = f"http://{config['HOST']}:{config['PORT']}/flag?teamid={config['SYSTEM_TOKEN']}&flag={item.flag}"
+        url = f"http://{config['SYSTEM_HOST']}:{config['PORT']}/flag?teamid={config['SYSTEM_TOKEN']}&flag={item.flag}"
 
         try:
             response = requests.get(url, timeout=TIMEOUT).text.strip()
