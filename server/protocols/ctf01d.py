@@ -29,7 +29,7 @@ def submit_flags(flags, config):
     unknown_responses = set()
 
     for item in flags:
-        url = f"http://{config['SYSTEM_HOST']}:{config['PORT']}/flag?teamid={config['SYSTEM_TOKEN']}&flag={item.flag}"
+        url = f"http://{config['SYSTEM_HOST']}:{config['SYSTEM_PORT']}/flag?teamid={config['SYSTEM_TOKEN']}&flag={item.flag}"
 
         try:
             response = requests.get(url, timeout=TIMEOUT).text.strip()
